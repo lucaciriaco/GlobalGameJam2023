@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    public GameObject _lastNode;
+    public Transform _lastNode;
 
     [SerializeField] private LineRenderer _line;
 
-    void Start()
+    public void Init(Transform lastNode)
     {
-        if(_lastNode != null)
+        _lastNode = lastNode;
+        if (_lastNode != null)
         {
             _line.SetPosition(0, _lastNode.transform.position);
             _line.SetPosition(1, this.transform.position);
