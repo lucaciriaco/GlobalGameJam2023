@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class NodeManager : MonoBehaviour
 {
+    public List<PickUp> PickUps = new List<PickUp>();
     public List<GameObject> Nodes;
     public int CuantityOfNodes;
     public Transform LastNode;
@@ -25,7 +27,18 @@ public class NodeManager : MonoBehaviour
         {
             x.OnPlayerEnter += SpawnBigNode;
         });
-        
+
+        FindObjectsOfType<PickUp>().ToList().ForEach(x =>
+        {
+            x.OnPlayerPickUp+= PlayerPickedUp;
+        });
+    }
+   
+    private void PlayerPickedUp(PickUp pickUp)
+    {
+        PickUps.Add(pickUp);
+        pickUp.AddCuantityOfNodes();
+        CuantityOfNodes++;
     }
 
     void Update()
@@ -55,6 +68,10 @@ public class NodeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Joystick1Button4) == true && LastNode != null && !LastNode.GetComponent<Node>().BigNode)
         {
             _player.position = LastNode.position;
+            LastNode.GetComponent<Node>().PickUps.ForEach(pickup => {
+                pickup.SubstractCuantityOfNodes();
+                CuantityOfNodes--;
+            });
             Nodes.Remove(LastNode.gameObject);
             var lastReference = LastNode.gameObject;
             LastNode = LastNode.gameObject.GetComponent<Node>()._lastNode;
@@ -66,10 +83,12 @@ public class NodeManager : MonoBehaviour
     private void SpawnNode()
     {
         var instance = Instantiate(_node, _player.position, Quaternion.identity).transform;
+        LastNode.GetComponent<Node>().PickUps = PickUps;
         instance.GetComponent<Node>().Init(LastNode);
         LastNode = instance;
         Nodes.Add(LastNode.gameObject);
         CuantityOfNodes--;
+        PickUps = new List<PickUp>();
     }
 
     private void SpawnBigNode()
@@ -78,7 +97,6 @@ public class NodeManager : MonoBehaviour
         instance.GetComponent<Node>().Init(LastNode, true);
         LastNode = instance;
         Nodes = new List<GameObject>();
-        CuantityOfNodes--;
     }
 
     private void DrawLine()

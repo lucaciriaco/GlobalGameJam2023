@@ -6,6 +6,7 @@ public class Node : MonoBehaviour
 {
     public Transform _lastNode;
     public bool BigNode = false;
+    public List<PickUp> PickUps;
 
 
     [SerializeField] private LineRenderer _line;
@@ -19,7 +20,6 @@ public class Node : MonoBehaviour
             _line.SetPosition(1, this.transform.position);
         }
     }
-
     public void Init(Transform lastNode, bool bigNode)
     {
         Init(lastNode);
