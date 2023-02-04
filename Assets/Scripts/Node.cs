@@ -5,6 +5,8 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public Transform _lastNode;
+    public bool BigNode = false;
+
 
     [SerializeField] private LineRenderer _line;
 
@@ -16,5 +18,11 @@ public class Node : MonoBehaviour
             _line.SetPosition(0, _lastNode.transform.position);
             _line.SetPosition(1, this.transform.position);
         }
+    }
+
+    public void Init(Transform lastNode, bool bigNode)
+    {
+        Init(lastNode);
+        BigNode = bigNode;
     }
 }
