@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public Sprite[] partsSprites;
     public GameObject player1;
-    public GameObject player2;
     public int partsCollected;
     public int partsQuantity;
     public float triesCounter;
@@ -22,8 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text bestScoreUI;
     [SerializeField] private Text yourScoreUI;
     private GameObject[] parts;
-    private Vector3 p1Start;
-    private Vector3 p2Start;
     private float timer;
 
     private void Awake()
@@ -38,9 +35,6 @@ public class GameManager : MonoBehaviour
         Debug.Log(PlayerPrefs.GetFloat("Highscore"));
         pauseMenu.gameObject.SetActive(false);
         winMenu.gameObject.SetActive(false);
-        //Cursor.lockState = CursorLockMode.Locked;
-        p1Start = player1.transform.position;
-        p2Start = player2.transform.position;
         triesCounter = 0;
         partsCollected = 0;
     }
@@ -50,7 +44,6 @@ public class GameManager : MonoBehaviour
     {
         ShowStatus();
         WinState();
-        DeletePlayerprefs();
     }
 
     void ShowStatus()
@@ -63,8 +56,6 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         triesCounter = triesCounter + 1f;
-        player1.gameObject.transform.position = p1Start;
-        player2.gameObject.transform.position = p2Start;
     }
 
     void RandomSpriteParts()
@@ -79,7 +70,6 @@ public class GameManager : MonoBehaviour
     {
         if (partsCollected == partsQuantity)
         {
-            Debug.Log(timer);
             if (timer < PlayerPrefs.GetFloat("Highscore"))
             {
                  PlayerPrefs.SetFloat("Highscore", timer);
@@ -91,15 +81,6 @@ public class GameManager : MonoBehaviour
         else
         {
             timer += Time.deltaTime;
-        }
-    }
-
-    void DeletePlayerprefs()
-    {
-        if(Input.GetKeyDown("i"))
-        {
-            PlayerPrefs.DeleteAll();
-            Debug.Log("Delet");
         }
     }
 }

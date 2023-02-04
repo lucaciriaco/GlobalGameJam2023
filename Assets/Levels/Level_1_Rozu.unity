@@ -357,6 +357,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8030058097636327957, guid: 160c29e11e21a0e419f8b489459db517,
         type: 3}
+      propertyPath: maxZoom
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8030058097636327957, guid: 160c29e11e21a0e419f8b489459db517,
+        type: 3}
       propertyPath: targets.Array.size
       value: 1
       objectReference: {fileID: 0}
