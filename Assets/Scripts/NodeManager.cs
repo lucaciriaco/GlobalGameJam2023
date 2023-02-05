@@ -62,12 +62,16 @@ public class NodeManager : MonoBehaviour
         {
             _line.enabled = false;
         }
-        ReturnLastNode();
+
+        if (Input.GetKeyDown(KeyCode.Joystick1Button4) == true)
+        {
+            ReturnLastNode();
+        }
     }
 
-    private void ReturnLastNode()
+    public void ReturnLastNode()
     {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button4) == true && LastNode != null && !LastNode.GetComponent<Node>().BigNode)
+        if (LastNode != null && !LastNode.GetComponent<Node>().BigNode)
         {
             _player.position = LastNode.position;
             LastNode.GetComponent<Node>().PickUps.ForEach(pickup => {
@@ -80,6 +84,12 @@ public class NodeManager : MonoBehaviour
             LastNode = LastNode.gameObject.GetComponent<Node>()._lastNode;
             Destroy(lastReference);
             CuantityOfNodes++;
+        } 
+        if (LastNode.GetComponent<Node>().BigNode)
+        {
+             _player.position = LastNode.position;
+             SoundManager.instance.audioData.PlayOneShot(SoundManager.instance.DeleteNode);
+
         }
     }
 
