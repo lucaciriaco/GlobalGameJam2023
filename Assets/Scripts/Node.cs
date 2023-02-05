@@ -8,7 +8,6 @@ public class Node : MonoBehaviour
     public bool BigNode = false;
     public List<PickUp> PickUps;
 
-
     [SerializeField] private LineRenderer _line;
 
     public void Init(Transform lastNode)

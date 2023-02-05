@@ -11,6 +11,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip PlaceNode;
     public AudioClip DeleteNode;
     public AudioClip PickItem;
+    public AudioClip BigNode;
+    public AudioClip Ouch;
+    public AudioClip MusicCredits;
     
     public AudioSource audioData;
 

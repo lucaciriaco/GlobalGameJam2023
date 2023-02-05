@@ -6,6 +6,8 @@ using UnityEngine;
 public class BigNode : MonoBehaviour
 {
     [SerializeField] private LineRenderer _line;
+    [SerializeField] GameObject _bigNodeLit;
+    [SerializeField] GameObject _bigNodeUnLit;
 
     public Action OnPlayerEnter;
 
@@ -14,7 +16,9 @@ public class BigNode : MonoBehaviour
         if (collision.tag == "Player")
         {
             OnPlayerEnter?.Invoke();
-            gameObject.SetActive(false);
+            GetComponent<Collider2D>().enabled = false;
+            _bigNodeLit.SetActive(true);
+            _bigNodeUnLit.SetActive(false);
         }
     }
 }

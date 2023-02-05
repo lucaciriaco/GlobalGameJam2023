@@ -83,6 +83,11 @@ public class NodeManager : MonoBehaviour
         }
     }
 
+    private void ReturnLastNodeCode()
+    {
+
+    }
+
     private void SpawnNode()
     {
         var instance = Instantiate(_node, _player.position, Quaternion.identity).transform;
