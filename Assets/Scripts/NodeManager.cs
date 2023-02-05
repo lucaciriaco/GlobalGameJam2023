@@ -36,6 +36,7 @@ public class NodeManager : MonoBehaviour
    
     private void PlayerPickedUp(PickUp pickUp)
     {
+        SoundManager.instance.audioData.PlayOneShot(SoundManager.instance.PickItem);
         PickUps.Add(pickUp);
         pickUp.AddCuantityOfNodes();
         CuantityOfNodes++;
@@ -54,6 +55,7 @@ public class NodeManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Joystick1Button1) == true && CuantityOfNodes >= 0)
             {
                 SpawnNode();
+                SoundManager.instance.audioData.PlayOneShot(SoundManager.instance.PlaceNode);
             }
         }
         else
@@ -72,6 +74,7 @@ public class NodeManager : MonoBehaviour
                 pickup.SubstractCuantityOfNodes();
                 CuantityOfNodes--;
             });
+            SoundManager.instance.audioData.PlayOneShot(SoundManager.instance.DeleteNode);
             Nodes.Remove(LastNode.gameObject);
             var lastReference = LastNode.gameObject;
             LastNode = LastNode.gameObject.GetComponent<Node>()._lastNode;
@@ -97,6 +100,7 @@ public class NodeManager : MonoBehaviour
         instance.GetComponent<Node>().Init(LastNode, true);
         LastNode = instance;
         Nodes = new List<GameObject>();
+
     }
 
     private void DrawLine()

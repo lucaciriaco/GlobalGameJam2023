@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
         if (joystickNumber == "1"  && Input.GetKeyDown(KeyCode.Joystick1Button0))
 		{
 			jump = true;
+			SoundManager.instance.audioData.PlayOneShot(SoundManager.instance.Jump);
 		}
     }
 
