@@ -5,11 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class Game : MonoBehaviour
 {
-    public static GameManager instance;
     public int BigNodesActivated;
-
     [SerializeField] private TextMeshProUGUI NodesCounterUI;
     [SerializeField] private TextMeshProUGUI timerUI;
     private GameObject[] bigNodes;
@@ -23,7 +21,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         BigNodesActivated = 0;
-        instance = this;
     }
 
     void Update()

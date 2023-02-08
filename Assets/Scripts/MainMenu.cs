@@ -6,38 +6,18 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject _selectLevel;
+    [SerializeField] private GameObject _credits;
+    [SerializeField] private GameObject _mainMenu;
 
-    // Start is called before the first frame update
-    void Start()
+    private void ShowMainMenu()
     {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Play()
     {
         SceneManager.LoadScene(1);
-        Debug.Log("asdf");
-    }
-
-    public void HighScores()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void Credits()
-    {
-        SceneManager.LoadScene(3);
-    }
-
-    public void BackToMainMenu()
-    {
-        SceneManager.LoadScene(0);
     }
 
     public void Exit()

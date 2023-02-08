@@ -6,7 +6,7 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] private NodeManager NodeManager;
     public GameObject partHolder;
-    public GameManager gameManager;
+    public Game gameManager;
 
     private float _delay = 0;
     // Start is called before the first frame update
